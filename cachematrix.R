@@ -28,15 +28,18 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
   ## Return a matrix that is the inverse of 'x'
-  i<-x$getsolve()
-  if (!is.null(i) )
+  minverse<-x$getsolve()
+  ##check inverse is already solved to return cached value
+  if (!is.null(minverse) )
   {
-  i
+    message("getting cached data")
+  minverse
   }
+  ## inverse is not solved jet. it solve the inverse
   else{
-    mz<-x$get()
-    i<-solve(mz)
-    x$setsolve(i)
-    i
+    vmatrix<-x$get()
+    minverse<-solve(vmatrix)
+    x$setsolve(minverse)
+    minverse
   }
 }
